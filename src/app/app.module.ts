@@ -6,7 +6,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { NewAccountComponent } from './new-account/new-account.component';
+import { AccountsService } from './accounts.service';
+import { LoggingService } from './logging.service';
 
+// highest possible level for service injection (including app.component) and will ensure all of the components recieve the same instance
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,7 @@ import { NewAccountComponent } from './new-account/new-account.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [AccountsService, LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

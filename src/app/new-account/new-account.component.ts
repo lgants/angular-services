@@ -8,7 +8,7 @@ import { AccountsService } from '../accounts.service';
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
-  providers: [LoggingService],
+  // providers: [LoggingService],
 })
 export class NewAccountComponent {
   // no longer need to emit the event once the AccountsService service was added
@@ -16,10 +16,8 @@ export class NewAccountComponent {
 
   // type is not optional in this case while creating a service
   // using private is a TS shortcut that adds the loggingService property (i.e. can access this.loggingService)
-  constructor(
-    private loggingService: LoggingService,
-    private accountsService: AccountsService
-  ) {}
+  // removed 'private loggingService: LoggingService' from provider after injecting logging service into app.module
+  constructor(private accountsService: AccountsService) {}
 
   onCreateAccount(accountName: string, accountStatus: string) {
     // no longer need to emit the event once the AccountsService service was added
@@ -31,8 +29,7 @@ export class NewAccountComponent {
     // const service = new LoggingService();
     // service.logStatusChange(accountStatus);
     // console.log('A server status changed, new status: ' + accountStatus);
-    this.loggingService.logStatusChange(accountStatus);
+    // this.loggingService.logStatusChange(accountStatus);
     this.accountsService.addAccount(accountName, accountStatus)
-
   }
 }

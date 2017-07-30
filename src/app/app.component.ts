@@ -5,7 +5,6 @@ import { AccountsService } from './accounts.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AccountsService],
 })
 export class AppComponent implements OnInit {
   // this denotes an array of objects initialized with an empty array
