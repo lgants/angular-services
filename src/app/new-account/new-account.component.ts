@@ -11,25 +11,30 @@ import { AccountsService } from '../accounts.service';
   // providers: [LoggingService],
 })
 export class NewAccountComponent {
-  // no longer need to emit the event once the AccountsService service was added
+  // NOTE no longer need to emit the event once the AccountsService service was added
   // @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
 
-  // type is not optional in this case while creating a service
-  // using private is a TS shortcut that adds the loggingService property (i.e. can access this.loggingService)
-  // removed 'private loggingService: LoggingService' from provider after injecting logging service into app.module
-  constructor(private accountsService: AccountsService) {}
+  // NOTE type is not optional in this case while creating a service
+  // NOTE using private is a TS shortcut that adds the loggingService property (i.e. can access this.loggingService)
+  // NOTE removed 'private loggingService: LoggingService' from provider after injecting logging service into app.module
+  constructor(private accountsService: AccountsService) {
+    this.accountsService.statusUpdated.subscribe(
+      (status: string) => alert('New Status: ' + status)
+    );
+  }
 
   onCreateAccount(accountName: string, accountStatus: string) {
-    // no longer need to emit the event once the AccountsService service was added
+    // NOTE no longer need to emit the event once the AccountsService service was added
     // this.accountAdded.emit({
     //   name: accountName,
     //   status: accountStatus
     // });
-    // declaring the service as a variable will work, but doesn't conform with convention
+    // NOTE declaring the service as a variable will work, but doesn't conform with convention
     // const service = new LoggingService();
     // service.logStatusChange(accountStatus);
     // console.log('A server status changed, new status: ' + accountStatus);
+    // NOTE removed 'private loggingService: LoggingService' from provider after injecting logging service into app.module and migrating this functionality
     // this.loggingService.logStatusChange(accountStatus);
-    this.accountsService.addAccount(accountName, accountStatus)
+    this.accountsService.addAccount(accountName, accountStatus);
   }
 }

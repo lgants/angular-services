@@ -14,12 +14,14 @@ export class AccountComponent {
   // @Output() statusChanged = new EventEmitter<{id: number, newStatus: string}>();
 
 
-  // removed 'private loggingService: LoggingService' from provider after injecting logging service into app.module
+  // NOTE removed 'private loggingService: LoggingService' from provider after injecting logging service into app.module
   constructor(private accountsService: AccountsService) {}
 
   onSetTo(status: string) {
     // this.statusChanged.emit({id: this.id, newStatus: status});
     this.accountsService.updateStatus(this.id, status)
+    // NOTE removed 'private loggingService: LoggingService' from provider after injecting logging service into app.module and migrating this functionality
     // this.loggingService.logStatusChange(status);
+    this.accountsService.statusUpdated.emit(status);
   }
 }
